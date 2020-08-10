@@ -1,0 +1,12 @@
+{
+  "name": "GoogleKeepNotes",
+  "displayName": "GoogleKeepNotes",
+  "expo": {
+    "name": "GoogleKeepNotes",
+    "slug": "GoogleKeepNotes",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
