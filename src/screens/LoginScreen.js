@@ -12,6 +12,9 @@ export default function LoginScreen({ navigation }) {
   const loadSignUpScreen = () => {
     navigation.navigate('SignUp')
   }
+  const loadForgotPasswordScreen = () => {
+    navigation.navigate('ForgotPassword')
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -32,7 +35,7 @@ export default function LoginScreen({ navigation }) {
             <Button title='Sign Up' style={styles.signUpButton} onPress={loadSignUpScreen}/>
           </View>
           <View style={styles.buttons}>
-            <Button title='Forgot password ?' style={styles.forgotButton}/>
+            <Button title='Forgot password ?' style={styles.forgotButton} onPress={loadForgotPasswordScreen}/>
           </View>
         </KeyboardAvoidingView>
     </SafeAreaView>
