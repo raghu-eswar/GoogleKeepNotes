@@ -22,7 +22,7 @@ export default function LoginScreen(props) {
     }):{}
 
     return (
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={props.onPress}>
             <Text style={styles.title}>{(props.title)? props.title : 'Botton'}</Text>
         </TouchableOpacity>
     );

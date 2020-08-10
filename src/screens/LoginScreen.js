@@ -4,10 +4,14 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import { styles } from '../styles/login.styles';
 import Button from '../components/Button';
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+
+  const loadSignUpScreen = () => {
+    navigation.navigate('SignUp')
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -25,7 +29,7 @@ export default function LoginScreen() {
                       onChangeText={(password) => setPassword(password)}/>
           <View style={styles.buttons}>
             <Button title='Log in' style={styles.loginButton}/>
-            <Button title='Sign Up' style={styles.signUpButton}/>
+            <Button title='Sign Up' style={styles.signUpButton} onPress={loadSignUpScreen}/>
           </View>
           <View style={styles.buttons}>
             <Button title='Forgot password ?' style={styles.forgotButton}/>
