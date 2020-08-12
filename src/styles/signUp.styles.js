@@ -1,36 +1,35 @@
-import { StyleSheet} from 'react-native';
+import { StyleSheet } from "react-native";
+import styled from "styled-components/native";
+import { ScrollView, View } from "react-native";
+
+export const Content = styled(ScrollView)`
+  width: 100%;
+  height: 60%;
+  margin-top: 20%;
+`;
+
+export const Buttons = styled(View)`
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 15px;
+`;
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f1f1f1',
-    alignItems: 'center',
-  },
-  content: {
-    width: '100%', 
-    height: '60%',
-    marginTop: '20%',
-  },
   containerStyle: {
     margin: 10,
     width: 250,
     height: 50,
-    alignSelf: 'center', 
-  },  
-  inputContainerStyle: {
-    borderBottomColor: '#fccc54',
+    alignSelf: "center",
   },
-  buttons: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    margin: 15,
+  inputContainerStyle: {
+    borderBottomColor: "#fccc54",
   },
   submitButton: {
     width: 125,
     height: 40,
-    borderColor:'#ffffff', 
-    backgroundColor:'#fccc54', 
-    color:'#ffffff',
+    borderColor: "#ffffff",
+    backgroundColor: "#fccc54",
+    color: "#ffffff",
     fontSize: 18,
   },
 });
