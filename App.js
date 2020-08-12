@@ -5,7 +5,7 @@ import React from 'react';
 import LoginScreen from './src/screens/LoginScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
-import { styles } from './src/styles/common.styles';
+import { styles } from './src/commons/styles/styles';
 
 const Stack = createStackNavigator();
 
