@@ -18,18 +18,17 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 20,
     letterSpacing: 0.8,
-    color: '#fcb70b'
+    color: '#fcb70b',
   },
-  input: {
+  containerStyle: {
     margin: 10,
     width: 300,
     height: 50,
-    borderColor: '#fdd36c',
-    borderWidth: 2,
-    borderRadius: 50,
-    textAlign: 'center',
     alignSelf: 'center',
-  },  
+  }, 
+  inputContainerStyle: {
+    borderBottomColor: '#fccc54',
+  }, 
   buttons: {
     flexDirection: 'row',
     justifyContent: 'space-around',

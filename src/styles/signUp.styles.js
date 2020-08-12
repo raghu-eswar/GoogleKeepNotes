@@ -11,16 +11,15 @@ export const styles = StyleSheet.create({
     height: '60%',
     marginTop: '20%',
   },
-  input: {
+  containerStyle: {
     margin: 10,
     width: 250,
     height: 50,
-    borderColor: '#fdd36c',
-    borderWidth: 2,
-    borderRadius: 50,
-    textAlign: 'center',
-    alignSelf: 'center',
+    alignSelf: 'center', 
   },  
+  inputContainerStyle: {
+    borderBottomColor: '#fccc54',
+  },
   submitButton: {
     width: 125,
     height: 40,
