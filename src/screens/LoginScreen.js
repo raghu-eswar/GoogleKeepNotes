@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { View, SafeAreaView, KeyboardAvoidingView } from "react-native";
 import { Input } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome5";
-import { styles } from "../styles/login.styles";
 import Button from "../components/Button";
-import { emailValidator, passwordValidator } from '../service/validations'
+import { emailValidator, passwordValidator } from "../service/validations";
+import { Container } from "../commons/styledComponents/styled.components";
+import * as Styled from "../styles/login.styles";
 
 export default function LoginScreen({ navigation }) {
   const [userName, setUserName] = useState("");
@@ -19,59 +18,56 @@ export default function LoginScreen({ navigation }) {
     navigation.navigate("ForgotPassword");
   };
   const updateUserName = (userName) => {
-    setUserName(userName)
-    if (userNameError) 
-      emailValidator(userName, setUserNameError)
+    setUserName(userName);
+    if (userNameError) emailValidator(userName, setUserNameError);
   };
   const updatePassword = (password) => {
-    setPassword(password)
-    if (userNameError) 
-      passwordValidator(password, setPasswordError)
+    setPassword(password);
+    if (userNameError) passwordValidator(password, setPasswordError);
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView style={styles.content} behavior="position">
-        <Icon name="unlock-alt" size={100} style={styles.icon} />
+    <Container>
+      <Styled.Content behavior="position">
+        <Styled.LockIcon name="unlock-alt" size={100} />
         <Input
-          containerStyle={styles.containerStyle}
+          containerStyle={Styled.styles.containerStyle}
           keyboardType="email-address"
           placeholder="User Name"
           value={userName}
           errorMessage={userNameError}
-          inputContainerStyle={styles.inputContainerStyle}
+          inputContainerStyle={Styled.styles.inputContainerStyle}
           placeholderTextColor="#fccc54"
-          underlineColorAndroid="transparent"
           onChangeText={(userName) => updateUserName(userName)}
           onBlur={() => emailValidator(userName, setUserNameError)}
         />
         <Input
-          containerStyle={styles.containerStyle}
+          containerStyle={Styled.styles.containerStyle}
           secureTextEntry={true}
           placeholder="Password"
           value={password}
           errorMessage={passwordError}
-          inputContainerStyle={styles.inputContainerStyle}
+          inputContainerStyle={Styled.styles.inputContainerStyle}
           placeholderTextColor="#fccc54"
           onChangeText={(password) => updatePassword(password)}
           onBlur={() => passwordValidator(password, setPasswordError)}
         />
-        <View style={styles.buttons}>
-          <Button title="Log in" style={styles.loginButton} />
+        <Styled.Buttons>
+          <Button title="Log in" style={Styled.styles.loginButton} />
           <Button
             title="Sign Up"
-            style={styles.signUpButton}
+            style={Styled.styles.signUpButton}
             onPress={loadSignUpScreen}
           />
-        </View>
-        <View style={styles.buttons}>
+        </Styled.Buttons>
+        <Styled.Buttons>
           <Button
             title="Forgot password ?"
-            style={styles.forgotButton}
+            style={Styled.styles.forgotButton}
             onPress={loadForgotPasswordScreen}
           />
-        </View>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+        </Styled.Buttons>
+      </Styled.Content>
+    </Container>
   );
 }

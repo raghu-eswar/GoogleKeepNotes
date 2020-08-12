@@ -1,23 +1,29 @@
 import { StyleSheet } from "react-native";
+import styled from 'styled-components/native';
+import { View, KeyboardAvoidingView } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
+
+export const Content = styled(KeyboardAvoidingView) `
+  width: 70%;
+  height: 50%;
+  align-items: center;
+  justify-content: space-evenly;
+  align-content: center;
+  margin-Top: 25%;
+`
+
+export const LockIcon = styled(Icon) `
+  align-self: center;
+  color: #fccc54;
+`
+
+export const Buttons = styled(View) `
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 15px;
+`
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f1f1f1",
-    alignItems: "center",
-  },
-  content: {
-    width: "70%",
-    height: "50%",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    alignContent: "center",
-    marginTop: "25%",
-  },
-  icon: {
-    alignSelf: "center",
-    color: "#fccc54",
-  },
   containerStyle: {
     margin: 10,
     width: 250,
@@ -25,11 +31,6 @@ export const styles = StyleSheet.create({
   },
   inputContainerStyle: {
     borderBottomColor: "#fccc54",
-  },
-  buttons: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    margin: 15,
   },
   loginButton: {
     borderColor: "#ffffff",
