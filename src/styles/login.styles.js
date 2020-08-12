@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
     alignContent: "center",
-    marginTop: "20%",
+    marginTop: "25%",
   },
   icon: {
     alignSelf: "center",
@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
   buttons: {
     flexDirection: "row",
     justifyContent: "space-around",
-    margin: 5,
+    margin: 15,
   },
   loginButton: {
     borderColor: "#ffffff",
