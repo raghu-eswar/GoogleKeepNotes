@@ -6,6 +6,12 @@ export function emailValidator(email, setError) {
 
 export function passwordValidator(password, setError) {
   if (!/(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}/.test(password))
-    setError("invalied password");
+    setError("invalied Password");
+  else setError("");
+}
+
+export function nameValidator(name, setError) {
+  if (!/^[A-Z][a-z]{3,}$/.test(name))
+    setError("invalied Name");
   else setError("");
 }

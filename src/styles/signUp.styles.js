@@ -20,6 +20,11 @@ export const styles = StyleSheet.create({
   inputContainerStyle: {
     borderBottomColor: '#fccc54',
   },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    margin: 15,
+  },
   submitButton: {
     width: 125,
     height: 40,
