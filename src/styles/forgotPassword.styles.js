@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
   buttons: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    margin: 10,
+    margin: 15,
   },
   confirmButton: {
     width: 150,

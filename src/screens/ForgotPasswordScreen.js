@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import {
-  Text,
-  TextInput,
-  View,
-  SafeAreaView,
-  KeyboardAvoidingView,
+import { Text, View, SafeAreaView, KeyboardAvoidingView,
 } from "react-native";
 import { Input } from "react-native-elements";
 import { styles } from "../styles/forgotPassword.styles";
 import Button from "../components/Button";
+import { emailValidator } from '../service/validations'
 
 export default function ForgotPasswordScreen() {
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  const updateEmail = (email) => {
+    setEmail(email)
+    if (emailError) 
+      emailValidator(email, setEmailError)
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -21,14 +24,14 @@ export default function ForgotPasswordScreen() {
           containerStyle={styles.containerStyle}
           keyboardType="email-address"
           placeholder="Email"
-          value={email}
           inputContainerStyle={styles.inputContainerStyle}
           placeholderTextColor="#fccc54"
-          underlineColorAndroid="transparent"
-          onChangeText={(email) => setEmail(email)}
+          value={email}
+          errorMessage={emailError}
+          onChangeText={(email) => updateEmail(email)}
         />
         <View style={styles.buttons}>
-          <Button title="Confirm" style={styles.confirmButton} />
+          <Button title="Confirm" style={styles.confirmButton} onPress={() => emailValidator(email, setEmailError)}/>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
