@@ -5,6 +5,7 @@ import React from 'react';
 import LoginScreen from './src/screens/LoginScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
+import signUpSuccessScreen from './src/screens/signUpSuccessScreen';
 import { styles } from './src/commons/styles/styles';
 
 const Stack = createStackNavigator();
@@ -30,6 +31,13 @@ export default function App() {
         name="ForgotPassword" 
         component={ForgotPasswordScreen} 
         options={{title: 'Forgot Password',
+                  headerStyle: styles.header,
+                  headerTitleStyle: styles.headerTitle,
+                  headerLeft: null,}} />
+      <Stack.Screen 
+        name="signUpSuccess" 
+        component={signUpSuccessScreen} 
+        options={{title: 'Sign Up Success',
                   headerStyle: styles.header,
                   headerTitleStyle: styles.headerTitle,
                   headerLeft: null,}} />

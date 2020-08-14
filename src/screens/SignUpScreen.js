@@ -6,7 +6,7 @@ import { Container } from "../commons/styledComponents/styled.components";
 import * as Styled from "../styles/signUp.styles";
 import { signUp } from '../service/userServices';
 
-export default function SignUpScreen() {
+export default function SignUpScreen({ navigation }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -57,8 +57,8 @@ export default function SignUpScreen() {
                   service: "advance",
                   email: email,
                   password: password}
-                  ).then(response => console.log(response.data.data.success))
-                  .catch((error)=>console.log(error.response.data.error.details.messages.email[0]))
+                  ).then(response => {if(response.data.data.success) navigation.navigate("signUpSuccess")})
+                  .catch((error)=>setEmailError(error.response.data.error.details.messages.email[0]))
         } 
   };
 
