@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input } from "react-native-elements";
 import Button from "../components/Button";
-import { emailValidator, passwordValidator } from "../service/validations";
+import { emailValidator, passwordValidator } from "../validations/inputValidations";
 import { Container } from "../commons/styledComponents/styled.components";
 import * as Styled from "../styles/login.styles";
 
