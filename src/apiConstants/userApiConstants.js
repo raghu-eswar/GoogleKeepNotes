@@ -1,3 +1,4 @@
 export const authentication = {
-    signUp:'/user/userSignUp',
+    signUp: '/user/userSignUp',
+    logIn: '/user/login',
 }

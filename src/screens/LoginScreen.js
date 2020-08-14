@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { AsyncStorage } from 'react-native';  
 import { Input } from "react-native-elements";
 import Button from "../components/Button";
 import { emailValidator, passwordValidator } from "../validations/inputValidations";
 import { Container } from "../commons/styledComponents/styled.components";
 import * as Styled from "../styles/login.styles";
+import { logIn } from '../service/userServices';
 
 export default function LoginScreen({ navigation }) {
   const [userName, setUserName] = useState("");
@@ -19,12 +21,21 @@ export default function LoginScreen({ navigation }) {
   };
   const updateUserName = (userName) => {
     setUserName(userName);
-    if (userNameError) emailValidator(userName, setUserNameError);
+    if (userNameError) (emailValidator(userName))? setUserNameError(""):setUserNameError("invalied User Name");
   };
   const updatePassword = (password) => {
     setPassword(password);
-    if (userNameError) passwordValidator(password, setPasswordError);
+    if (passwordError) (passwordValidator(password))? setPasswordError(""):setPasswordError("invalied Password");
   };
+
+  const validateUser = () => {
+    if(emailValidator(userName) &&  passwordValidator(password)) {
+      logIn({ email: userName,
+              password: password,}
+            ).then(response=> {if(response.status === 200) AsyncStorage.setItem("id", response.data.id)})
+            .catch(error=> {if(error.response.data.error.code === "LOGIN_FAILED") setPasswordError("invalied username or password")})
+    }
+  }
 
   return (
     <Container>
@@ -39,7 +50,7 @@ export default function LoginScreen({ navigation }) {
           inputContainerStyle={Styled.styles.inputContainerStyle}
           placeholderTextColor="#fccc54"
           onChangeText={(userName) => updateUserName(userName)}
-          onBlur={() => emailValidator(userName, setUserNameError)}
+          onBlur={() => {if(!emailValidator(userName)) setUserNameError("invalied User Name")}}
         />
         <Input
           containerStyle={Styled.styles.containerStyle}
@@ -50,10 +61,10 @@ export default function LoginScreen({ navigation }) {
           inputContainerStyle={Styled.styles.inputContainerStyle}
           placeholderTextColor="#fccc54"
           onChangeText={(password) => updatePassword(password)}
-          onBlur={() => passwordValidator(password, setPasswordError)}
+          onBlur={() => {if(!passwordValidator(password)) setPasswordError("invalied Password")}}
         />
         <Styled.Buttons>
-          <Button title="Log in" style={Styled.styles.loginButton} />
+          <Button title="Log in" style={Styled.styles.loginButton} onPress={validateUser}/>
           <Button
             title="Sign Up"
             style={Styled.styles.signUpButton}
