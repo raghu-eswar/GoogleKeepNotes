@@ -32,7 +32,11 @@ export default function LoginScreen({ navigation }) {
     if(emailValidator(userName) &&  passwordValidator(password)) {
       logIn({ email: userName,
               password: password,}
-            ).then(response=> {if(response.status === 200) AsyncStorage.setItem("id", response.data.id)
+            ).then(response=> {if(response.status === 200) AsyncStorage.setItem("user", JSON.stringify({token: response.data.id,
+                                                                                                        firstName: response.data.firstName,
+                                                                                                        lastName: response.data.lastName,
+                                                                                                        email: response.data.email,
+                                                                                                        imageUri: response.data.imageUrl}))
                                 navigation.navigate("Home")})
             .catch(error=> {if(error.response.data.error.code === "LOGIN_FAILED") setPasswordError("invalied username or password")})
     }
