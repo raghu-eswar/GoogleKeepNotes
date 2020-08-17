@@ -3,7 +3,7 @@ import { Avatar } from "react-native-elements";
 
 export default function ProfileImage(props) {
   const avatarProps = {
-    size: 40,
+    size: props.size,
     rounded: true,
     overlayContainerStyle: { backgroundColor: "blue" },
     activeOpacity: 0.6,

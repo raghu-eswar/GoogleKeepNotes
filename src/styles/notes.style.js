@@ -10,4 +10,18 @@ container: {
     flex: 1, 
     width: "100%" 
   },
+  madalContainer: {
+    width:'100%', 
+    height: '100%', 
+    backgroundColor: 'black', 
+    opacity: 0.4,
+  },
+  madalConent: {
+    width:'90%', 
+    height: '40%', 
+    position: 'absolute', 
+    top: '20%', 
+    alignSelf: 'center', 
+    elevation: 5,
+  },
 });

@@ -68,7 +68,7 @@ export default function Header(props) {
           size={30}
           onPress={() => setView(!view)}
         ></Icon>
-        <ProfileImage title={props.title} profileImageUri={props.profileImageUri} />
+        <ProfileImage title={props.title} profileImageUri={props.profileImageUri} onPress={()=>props.setShowProfile(true)} size={40}/>
       </View>
     </View>
   );
