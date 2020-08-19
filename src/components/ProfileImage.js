@@ -8,7 +8,7 @@ export default function ProfileImage(props) {
     overlayContainerStyle: { backgroundColor: "blue" },
     activeOpacity: 0.6,
   };
-  if (props.profileImageUri) avatarProps.source = { uri: props.profileImageUri };
+  if (props.profileImageUri) avatarProps.source = { uri: process.env.API_BASE_URL+props.profileImageUri };
   else avatarProps.title = props.title;
 
   return (
