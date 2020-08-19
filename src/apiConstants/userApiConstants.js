@@ -1,4 +1,8 @@
 export const authentication = {
-    signUp: '/user/userSignUp',
-    logIn: '/user/login',
+    signUp: 'api/user/userSignUp',
+    logIn: 'api/user/login',
+    uploadProfileImage: '/user/uploadProfileImage'
+}
+export const service = {
+    uploadProfileImage: 'api/user/uploadProfileImage'
 }
