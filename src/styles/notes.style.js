@@ -20,7 +20,7 @@ container: {
     width:'90%', 
     height: '40%', 
     position: 'absolute', 
-    top: '20%', 
+    top: '15%', 
     alignSelf: 'center', 
     elevation: 5,
   },
