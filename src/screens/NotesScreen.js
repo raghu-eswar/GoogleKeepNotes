@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { View, TouchableWithoutFeedback, Keyboard, AsyncStorage, Modal } from "react-native";
 import Header from "../components/Header";
 import Profile from "../components/Profile";
@@ -11,7 +11,7 @@ export default function NotesScreen({ navigation }) {
   const [highlightSearch, setHighlightSearch] = useState(false);
   const [user, setUser] = useState(null);
   const [showProfile, setShowProfile] = useState(false);
-  const [showImageLoadingOptions, setShowImageLoadingOptions] = useState(false);
+  const refRBSheet = useRef();
 
   useEffect(() => {
     AsyncStorage.getItem("user").then((data) => setUser(JSON.parse(data)));
@@ -41,7 +41,7 @@ export default function NotesScreen({ navigation }) {
             if (response.status === 200) {
               let imageUrl = response.data.status.imageUrl
               setUser({ ...user, imageUri:  imageUrl});
-              setShowImageLoadingOptions(false);
+              refRBSheet.current.close();
               AsyncStorage.setItem("user", JSON.stringify({ ...user, imageUri:  imageUrl}));
             }
           })
@@ -77,17 +77,16 @@ export default function NotesScreen({ navigation }) {
         <View style={Styled.styles.madalConent}>
           <Profile
             user={user}
-            onPress={() => setShowImageLoadingOptions(true)}
+            onPress={() => refRBSheet.current.open()}
           />
         </View>
       </Modal>
-      <Modal animationType="slid" transparent={true} visible={showImageLoadingOptions} >
         <ImageLoadingOptions
-          setShowImageLoadingOptions={() => setShowImageLoadingOptions(false)}
+          refRBSheet={refRBSheet}
+          close={() => refRBSheet.current.close()}
           loadCamera={() => loadImage("camera")}
           loadGallery={() => loadImage("gallery")}
         />
-      </Modal>
     </View>
   );
 }

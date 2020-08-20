@@ -3,17 +3,7 @@ import { View, Text } from "react-native";
 import styled from "styled-components/native";
 import { StyleSheet } from "react-native";
 import Button from "./Button";
-
-const Container = styled(View)`
-  background-color: white;
-  width: 70%;
-  height: 30%;
-  align-self: center;
-  position: absolute;
-  bottom: 10%;
-  justify-content: space-evenly;
-  border-radius: 20px;
-`;
+import RBSheet from "react-native-raw-bottom-sheet";
 
 const Title = styled(Text)`
   font-size: 20px;
@@ -23,6 +13,14 @@ const Title = styled(Text)`
 `;
 
 const style = StyleSheet.create({
+  rbSheetContainer: {
+    backgroundColor: '#ffffff',
+    width: '100%',
+    height: '35%',
+    alignSelf: 'center',
+    justifyContent: 'space-evenly',
+    paddingBottom: 20,
+  },
   button: {
     width: 150,
     borderColor: "#1a73e8",
@@ -40,23 +38,32 @@ const style = StyleSheet.create({
 
 export default function ImageLoadingOptions(props) {
   return (
-    <Container>
-      <Title>select image source</Title>
+    <RBSheet
+        ref={props.refRBSheet}
+        closeOnPressMask={true}
+        customStyles={{
+          wrapper: {
+            backgroundColor: "transparent"
+          },
+          container: style.rbSheetContainer,
+        }}
+      >
+      <Title>upload image</Title>
       <Button
-        title="open camera"
+        title="camera"
         style={style.button}
         onPress={props.loadCamera}
       />
       <Button
-        title="open gallery"
+        title="gallery"
         style={style.button}
         onPress={props.loadGallery}
       />
       <Button
-        title="cancle"
+        title="cancel"
         style={style.cancleButton}
-        onPress={props.setShowImageLoadingOptions}
+        onPress={props.close}
       />
-    </Container>
+    </RBSheet>
   );
 }
