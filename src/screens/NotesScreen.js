@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { View, TouchableWithoutFeedback, Keyboard, AsyncStorage, Modal } from "react-native";
 import Header from "../components/Header";
 import Profile from "../components/Profile";
+import Loader from "../components/Loader";
 import * as Styled from "../styles/notes.style";
 import * as ImagePicker from "expo-image-picker";
 import { uploadProfileImage } from "../service/userServices";
@@ -11,8 +12,9 @@ export default function NotesScreen({ navigation }) {
   const [highlightSearch, setHighlightSearch] = useState(false);
   const [user, setUser] = useState(null);
   const [showProfile, setShowProfile] = useState(false);
+  const [displayLoader , setdisplayLoader] = useState(false);
   const refRBSheet = useRef();
-
+  
   useEffect(() => {
     AsyncStorage.getItem("user").then((data) => setUser(JSON.parse(data)));
   }, []);
@@ -31,6 +33,8 @@ export default function NotesScreen({ navigation }) {
       if (option === "gallery")
         result = await ImagePicker.launchImageLibraryAsync(imagePickerOptions);
       if (!result.cancelled) {
+        refRBSheet.current.close();
+        setdisplayLoader(true)
         let filename = result.uri.split("/").pop();
         let match = /\.(\w+)$/.exec(filename);
         let type = match ? `${result.type}/${match[1]}` : result.type;
@@ -41,7 +45,7 @@ export default function NotesScreen({ navigation }) {
             if (response.status === 200) {
               let imageUrl = response.data.status.imageUrl
               setUser({ ...user, imageUri:  imageUrl});
-              refRBSheet.current.close();
+              setdisplayLoader(false)
               AsyncStorage.setItem("user", JSON.stringify({ ...user, imageUri:  imageUrl}));
             }
           })
@@ -87,6 +91,7 @@ export default function NotesScreen({ navigation }) {
           loadCamera={() => loadImage("camera")}
           loadGallery={() => loadImage("gallery")}
         />
+        <Loader visible={displayLoader} />
     </View>
   );
 }
