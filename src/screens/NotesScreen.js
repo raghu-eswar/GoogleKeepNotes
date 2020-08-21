@@ -28,6 +28,10 @@ export default function NotesScreen({ navigation }) {
       updateNotes(user.token)
     });
   }, []);
+ 
+  const addNote = (note)=> {
+    setNotes([...notes, note])
+  }
 
   const updateNotes =(token) => {
     getNotesList(token).then(response=> setNotes(response.data.data.data)).catch(error=> console.log(error))
@@ -109,7 +113,7 @@ export default function NotesScreen({ navigation }) {
           loadGallery={() => loadImage("gallery")}
         />
         <Loader visible={displayLoader} />
-        <Note noteSheet={noteSheet} note="" noteTitle="" token={(user)? user.token:""} close={() => noteSheet.current.close()}/>       
+        <Note noteSheet={noteSheet} note="" noteTitle="" token={(user)? user.token:""} addNote={addNote} close={() => noteSheet.current.close()}/>       
     </View>
   );
 }

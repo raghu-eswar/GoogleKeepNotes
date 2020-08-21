@@ -72,7 +72,10 @@ const style = StyleSheet.create({
     formData.append("title", noteTitle);
     formData.append("description", note);
     addNotes(formData, props.token).then(response=> {
-      if (response.status === 200)  props.close()
+      if (response.status === 200) { 
+        props.close()
+        props.addNote(response.data.status.details)
+      }
     })
     .catch(error=> console.log(error))
    
