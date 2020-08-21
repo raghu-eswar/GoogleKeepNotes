@@ -9,7 +9,9 @@ container: {
   content: {
     height: '100%', 
     width: "100%", 
-    paddingTop: 20,
+    padding: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   madalContainer: {
     width:'100%', 

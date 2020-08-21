@@ -9,18 +9,29 @@ import * as ImagePicker from "expo-image-picker";
 import { uploadProfileImage } from "../service/userServices";
 import ImageLoadingOptions from "../components/ImageLoadingOptions";
 import PlusButton from "../components/PlusButton";
+import ShortNote from "../components/ShortNote";
+import { getNotesList } from "../service/notesServices";
 
 export default function NotesScreen({ navigation }) {
   const [highlightSearch, setHighlightSearch] = useState(false);
   const [user, setUser] = useState(null);
   const [showProfile, setShowProfile] = useState(false);
   const [displayLoader , setdisplayLoader] = useState(false);
+  const [notes , setNotes] = useState([]);
   const refRBSheet = useRef();
   const noteSheet = useRef();
 
   useEffect(() => {
-    AsyncStorage.getItem("user").then((data) => setUser(JSON.parse(data)));
+    AsyncStorage.getItem("user").then((data) => {
+      let user = JSON.parse(data)
+      setUser(user)
+      updateNotes(user.token)
+    });
   }, []);
+
+  const updateNotes =(token) => {
+    getNotesList(token).then(response=> setNotes(response.data.data.data)).catch(error=> console.log(error))
+  }
 
   const loadImage = async (option) => {
     try {
@@ -76,7 +87,8 @@ export default function NotesScreen({ navigation }) {
         }}
       >
         <View style={Styled.styles.content}>
-        <PlusButton onPress={()=> noteSheet.current.open()}/>
+          {notes.map(note=> <ShortNote title={note.title} note={note.description} />)}
+          <PlusButton onPress={()=> noteSheet.current.open()}/>
         </View>
       </TouchableWithoutFeedback>
       <Modal animationType="none" transparent={true} visible={showProfile}>
@@ -97,7 +109,7 @@ export default function NotesScreen({ navigation }) {
           loadGallery={() => loadImage("gallery")}
         />
         <Loader visible={displayLoader} />
-        <Note noteSheet={noteSheet} note="" noteTitle="" token={user.token} close={() => noteSheet.current.close()}/>       
+        <Note noteSheet={noteSheet} note="" noteTitle="" token={(user)? user.token:""} close={() => noteSheet.current.close()}/>       
     </View>
   );
 }
