@@ -4,7 +4,8 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import Icon from "react-native-vector-icons/EvilIcons";
 
 export default function Note(props) {
-  const [text , setText] = useState('');
+  const [note , setNote] = useState(props.note);
+  const [noteTitle , setNoteTitle] = useState(props.noteTitle);
   const screenWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('window').height;
   const[ keyBordHeight, setKeyBordHeight] = useState(0);
@@ -82,15 +83,17 @@ const style = StyleSheet.create({
           <TextInput
             autoFocus
             style={style.title}
+            onChangeText={(text) => setNoteTitle(text)}
+            value={noteTitle}
             placeholder='Title'
         />
           <TextInput
             placeholder="Note"
             multiline={true}
             allowFontScaling={false}
-            onChangeText={(text) => setText(text)}
+            onChangeText={(text) => setNote(text)}
             style={style.note}
-            value={text}
+            value={note}
           />
         </View>
       </View>
