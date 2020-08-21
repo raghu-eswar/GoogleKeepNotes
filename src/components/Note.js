@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, TextInput, Dimensions, Keyboard, StyleSheet } from "react-native";
 import RBSheet from "react-native-raw-bottom-sheet";
 import Icon from "react-native-vector-icons/EvilIcons";
+import { addNotes } from "../service/notesServices";
 
 export default function Note(props) {
   const [note , setNote] = useState(props.note);
@@ -66,6 +67,17 @@ const style = StyleSheet.create({
   },
 })
 
+  const saveNote = ()=> {
+    let formData = new FormData();
+    formData.append("title", noteTitle);
+    formData.append("description", note);
+    addNotes(formData, props.token).then(response=> {
+      if (response.status === 200)  props.close()
+    })
+    .catch(error=> console.log(error))
+   
+  }
+
   return (
     <RBSheet
     ref={props.noteSheet}
@@ -77,7 +89,7 @@ const style = StyleSheet.create({
 
       <View style={style.container}>
         <View style={style.header}>
-            <Icon name="chevron-left" size={50} onPress={props.close}></Icon>
+            <Icon name="chevron-left" size={50} onPress={saveNote}></Icon>
         </View>
         <View style={style.content}>
           <TextInput

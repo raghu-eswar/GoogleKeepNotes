@@ -97,7 +97,7 @@ export default function NotesScreen({ navigation }) {
           loadGallery={() => loadImage("gallery")}
         />
         <Loader visible={displayLoader} />
-        <Note noteSheet={noteSheet} note="" noteTitle="" close={() => noteSheet.current.close()}/>       
+        <Note noteSheet={noteSheet} note="" noteTitle="" token={user.token} close={() => noteSheet.current.close()}/>       
     </View>
   );
 }
