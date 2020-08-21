@@ -3,10 +3,12 @@ import { View, TouchableWithoutFeedback, Keyboard, AsyncStorage, Modal } from "r
 import Header from "../components/Header";
 import Profile from "../components/Profile";
 import Loader from "../components/Loader";
+import Note from "../components/Note";
 import * as Styled from "../styles/notes.style";
 import * as ImagePicker from "expo-image-picker";
 import { uploadProfileImage } from "../service/userServices";
 import ImageLoadingOptions from "../components/ImageLoadingOptions";
+import PlusButton from "../components/PlusButton";
 
 export default function NotesScreen({ navigation }) {
   const [highlightSearch, setHighlightSearch] = useState(false);
@@ -14,7 +16,8 @@ export default function NotesScreen({ navigation }) {
   const [showProfile, setShowProfile] = useState(false);
   const [displayLoader , setdisplayLoader] = useState(false);
   const refRBSheet = useRef();
-  
+  const noteSheet = useRef();
+
   useEffect(() => {
     AsyncStorage.getItem("user").then((data) => setUser(JSON.parse(data)));
   }, []);
@@ -72,7 +75,9 @@ export default function NotesScreen({ navigation }) {
           setHighlightSearch(false);
         }}
       >
-        <View style={Styled.styles.content}></View>
+        <View style={Styled.styles.content}>
+        <PlusButton onPress={()=> noteSheet.current.open()}/>
+        </View>
       </TouchableWithoutFeedback>
       <Modal animationType="none" transparent={true} visible={showProfile}>
         <TouchableWithoutFeedback onPress={() => setShowProfile(false)}>
@@ -92,6 +97,7 @@ export default function NotesScreen({ navigation }) {
           loadGallery={() => loadImage("gallery")}
         />
         <Loader visible={displayLoader} />
+        <Note noteSheet={noteSheet} close={() => noteSheet.current.close()}/>       
     </View>
   );
 }
