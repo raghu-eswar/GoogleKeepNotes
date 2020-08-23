@@ -68,17 +68,20 @@ const style = StyleSheet.create({
 })
 
   const saveNote = ()=> {
-    let formData = new FormData();
-    formData.append("title", noteTitle);
-    formData.append("description", note);
-    addNotes(formData, props.token).then(response=> {
-      if (response.status === 200) { 
-        props.close()
-        props.addNote(response.data.status.details)
-      }
-    })
-    .catch(error=> console.log(error))
-   
+    if(noteTitle && note) {
+      let formData = new FormData();
+      formData.append("title", noteTitle);
+      formData.append("description", note);
+      addNotes(formData, props.token).then(response=> {
+        if (response.status === 200) { 
+          props.close()
+          props.addNote(response.data.status.details)
+          setNote('')
+          setNoteTitle('')
+        }
+      })
+      .catch(error=> console.log(error))  
+    } else props.close()
   }
 
   return (
