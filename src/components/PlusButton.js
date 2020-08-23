@@ -5,14 +5,12 @@ import { Button } from "react-native-elements";
 
 export default function PlusButton(props) {
   return (
-    <View style={style.containerStyle}>
-      <Button
-        buttonStyle={style.buttonStyle}
-        containerStyle={style.contentStyle}
-        icon={<Icon name="plus" size={50} color="black" />}
-        {...props}
-      />
-    </View>
+    <Button
+      buttonStyle={style.buttonStyle}
+      containerStyle={style.contentStyle}
+      icon={<Icon name="plus" size={50} color="black" />}
+      {...props}
+    />
   );
 }
 
@@ -27,19 +25,5 @@ const style = StyleSheet.create({
     borderRadius: 25,
     elevation: 10,
     transform: [{ rotate: "45deg" }],
-  },
-  containerStyle: {
-    padding: 5,
-    backgroundColor: "#fff",
-    borderWidth: 1.5,
-    borderRadius: 40,
-    borderTopColor: "lightgray",
-    borderBottomColor: "transparent",
-    borderRightColor: "transparent",
-    borderLeftColor: "lightgray",
-    left: "80%",
-    bottom: "59%",
-    width: "16%",
-    transform: [{ rotate: "-134deg" }],
   },
 });
