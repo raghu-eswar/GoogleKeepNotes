@@ -3,8 +3,9 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
 container: {
     flex: 1, 
-    alignItems: "center", 
+    height: '100%',
     justifyContent: "flex-start",
+    backgroundColor: '#ffffff',
   },
   content: {
     height: '100%', 
@@ -26,5 +27,13 @@ container: {
     top: '15%', 
     alignSelf: 'center', 
     elevation: 5,
+  },
+  scrollViewStyle: {
+    flex: 1,
+  },
+  scrollViewContentContainerStyle: {
+    flexDirection: 'row', 
+    flexWrap: 'wrap', 
+    minHeight: '90%'
   },
 });
