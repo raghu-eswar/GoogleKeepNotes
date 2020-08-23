@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Profile from "../components/Profile";
 import Loader from "../components/Loader";
 import Note from "../components/Note";
+import BottomMenu from "../components/BottomMenu";
 import ImageLoadingOptions from "../components/ImageLoadingOptions";
 import ShortNote from "../components/ShortNote";
 import { uploadProfileImage } from "../service/userServices";
@@ -105,6 +106,7 @@ export default function NotesScreen({ navigation }) {
               ))}
             </View>
           </ScrollView>
+          <BottomMenu display={!highlightSearch} addNote={()=> noteSheet.current.open()}/>
         </View>
       </TouchableWithoutFeedback>
       <Modal animationType="none" transparent={true} visible={showProfile}>
