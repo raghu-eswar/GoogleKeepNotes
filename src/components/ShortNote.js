@@ -1,16 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function ShortNote(props) {
   return (
-    <View style={style.container}>
-      <Text style={style.title} numberOfLines={1}>
-        {props.title}
-      </Text>
-      <Text numberOfLines={4} style={style.note}>
-        {props.note}
-      </Text>
-    </View>
+    <TouchableOpacity style={style.container} onPress={()=> props.openActiveNote(props.note)}>
+      <View>
+        <Text style={style.title} numberOfLines={1}>
+          {props.note.title}
+        </Text>
+        <Text numberOfLines={4} style={style.note}>
+          {props.note.description}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 
@@ -22,9 +24,10 @@ const style = StyleSheet.create({
     borderWidth: 1,
     borderColor: "lightgray",
     margin: "2%",
+    borderRadius: 10,
   },
   note: {
-    alignSelf: "center",
+    alignSelf: "flex-start",
   },
-  title: { height: 30, fontWeight: "700", alignSelf: "center" },
+  title: { height: 30, fontWeight: "700", alignSelf: "flex-start" },
 });

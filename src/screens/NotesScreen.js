@@ -19,6 +19,7 @@ export default function NotesScreen({ navigation }) {
   const [showProfile, setShowProfile] = useState(false);
   const [displayLoader, setdisplayLoader] = useState(false);
   const [notes, setNotes] = useState([]);
+  const [activeNote, setActiveNote] = useState(null);
   const refRBSheet = useRef();
   const noteSheet = useRef();
 
@@ -35,9 +36,23 @@ export default function NotesScreen({ navigation }) {
   };
 
   const updateNotes = (token) => {
+    setdisplayLoader(true)
     getNotesList(token)
-      .then((response) => setNotes(response.data.data.data))
+      .then((response) => {
+        setNotes(response.data.data.data)
+        setdisplayLoader(false)
+      })
       .catch((error) => console.log(error));
+  };
+
+  const openNewNote = () => {
+    setActiveNote(null);
+    noteSheet.current.open()
+  };
+  
+  const openActiveNote = (note) => {
+    setActiveNote(note);
+    noteSheet.current.open()
   };
 
   const loadImage = async (option) => {
@@ -101,12 +116,10 @@ export default function NotesScreen({ navigation }) {
             style={Styled.styles.scrollViewStyle}
             contentContainerStyle={ Styled.styles.scrollViewContentContainerStyle }>
             <View style={Styled.styles.content}>
-              {notes.map((note) => (
-                <ShortNote title={note.title} note={note.description} />
-              ))}
+              {notes.map((note) => <ShortNote note={note} openActiveNote={openActiveNote}/>)}
             </View>
           </ScrollView>
-          <BottomMenu display={!highlightSearch} addNote={()=> noteSheet.current.open()}/>
+          <BottomMenu display={!highlightSearch} addNote={openNewNote}/>
         </View>
       </TouchableWithoutFeedback>
       <Modal animationType="none" transparent={true} visible={showProfile}>
@@ -126,11 +139,11 @@ export default function NotesScreen({ navigation }) {
       <Loader visible={displayLoader} />
       <Note
         noteSheet={noteSheet}
-        note=""
-        noteTitle=""
+        note={activeNote}
         token={user ? user.token : ""}
         addNote={addNote}
         close={() => noteSheet.current.close()}
+        updateNotes={()=>updateNotes(user.token)}
       />
     </View>
   );
