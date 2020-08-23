@@ -6,6 +6,11 @@ export function addNotes(note, token) {
         headers: {Authorization: token,}
     })
 }
+export function updateNotes(note, token) {
+    return axios.post(process.env.API_BASE_URL + notesApiConstants.updateNotes, note, {
+        headers: {Authorization: token,}
+    })
+}
 export function getNotesList(token) {
     return axios.get(process.env.API_BASE_URL + notesApiConstants.getNotesList, {
         headers: {Authorization: token,}
