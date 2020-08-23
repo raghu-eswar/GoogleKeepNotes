@@ -43,6 +43,7 @@ export default function Note(props) {
       updateNotes(formData, props.token).then((response) => {
         if (response.status === 200) { 
           reset();
+          props.updateNotes();
         }
       });
       return;
