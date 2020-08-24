@@ -5,7 +5,6 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import ProfileImage from "./ProfileImage"
 
 export default function Header(props) {
-  const [view, setView] = useState(true);
   const [search, setSearch] = useState("");
 
   const style = StyleSheet.create({
@@ -64,9 +63,9 @@ export default function Header(props) {
           value={search}
         />
         <Icon
-          name={`view-${view ? "grid" : "list"}`}
+          name={`view-${props.gridLayout ? "list" : "grid"}`}
           size={30}
-          onPress={() => setView(!view)}
+          onPress={props.setGridLayout}
         ></Icon>
         <ProfileImage title={props.title} profileImageUri={props.profileImageUri} onPress={()=>props.setShowProfile(true)} size={40}/>
       </View>

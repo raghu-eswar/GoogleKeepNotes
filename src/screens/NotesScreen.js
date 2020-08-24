@@ -19,6 +19,7 @@ export default function NotesScreen({ navigation }) {
   const [showProfile, setShowProfile] = useState(false);
   const [displayLoader, setdisplayLoader] = useState(false);
   const [notes, setNotes] = useState([]);
+  const [gridLayout, setGridLayout] = useState(true);
   const [activeNote, setActiveNote] = useState(null);
   const refRBSheet = useRef();
   const noteSheet = useRef();
@@ -104,6 +105,8 @@ export default function NotesScreen({ navigation }) {
         openDrawer={navigation.openDrawer}
         setHighlightSearch={setHighlightSearch}
         highlightSearch={highlightSearch}
+        gridLayout={gridLayout}
+        setGridLayout={()=> setGridLayout(!gridLayout)}
       />
       <TouchableWithoutFeedback
         onPress={() => {
@@ -116,7 +119,7 @@ export default function NotesScreen({ navigation }) {
             style={Styled.styles.scrollViewStyle}
             contentContainerStyle={ Styled.styles.scrollViewContentContainerStyle }>
             <View style={Styled.styles.content}>
-              {notes.map((note) => <ShortNote note={note} openActiveNote={openActiveNote}/>)}
+              {notes.map((note) => <ShortNote note={note} openActiveNote={openActiveNote} gridLayout={gridLayout}/>)}
             </View>
           </ScrollView>
           <BottomMenu display={!highlightSearch} addNote={openNewNote}/>
