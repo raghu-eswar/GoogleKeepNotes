@@ -6,6 +6,7 @@ import LoginScreen from './src/screens/LoginScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
 import signUpSuccessScreen from './src/screens/signUpSuccessScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 import { styles } from './src/commons/styles/styles';
 
 const Stack = createStackNavigator();
@@ -41,6 +42,10 @@ export default function App() {
                   headerStyle: styles.header,
                   headerTitleStyle: styles.headerTitle,
                   headerLeft: null,}} />
+      <Stack.Screen 
+        name="Home" 
+        component={ProfileScreen} 
+        options={{headerShown:false,}} />
     </Stack.Navigator>
   </NavigationContainer>
   );

@@ -21,19 +21,24 @@ export default function LoginScreen({ navigation }) {
   };
   const updateUserName = (userName) => {
     setUserName(userName);
-    if (userNameError) (emailValidator(userName))? setUserNameError(""):setUserNameError("invalied User Name");
+    if (userNameError) (emailValidator(userName))? setUserNameError(""):setUserNameError("invalid User Name");
   };
   const updatePassword = (password) => {
     setPassword(password);
-    if (passwordError) (passwordValidator(password))? setPasswordError(""):setPasswordError("invalied Password");
+    if (passwordError) (passwordValidator(password))? setPasswordError(""):setPasswordError("invalid Password");
   };
 
   const validateUser = () => {
     if(emailValidator(userName) &&  passwordValidator(password)) {
       logIn({ email: userName,
               password: password,}
-            ).then(response=> {if(response.status === 200) AsyncStorage.setItem("id", response.data.id)})
-            .catch(error=> {if(error.response.data.error.code === "LOGIN_FAILED") setPasswordError("invalied username or password")})
+            ).then(response=> {if(response.status === 200) AsyncStorage.setItem("user", JSON.stringify({token: response.data.id,
+                                                                                                        firstName: response.data.firstName,
+                                                                                                        lastName: response.data.lastName,
+                                                                                                        email: response.data.email,
+                                                                                                        imageUri: response.data.imageUrl}))
+                                navigation.navigate("Home")})
+            .catch(error=> {if(error.response.data.error.code === "LOGIN_FAILED") setPasswordError("invalid username or password")})
     }
   }
 
@@ -50,7 +55,7 @@ export default function LoginScreen({ navigation }) {
           inputContainerStyle={Styled.styles.inputContainerStyle}
           placeholderTextColor="#fccc54"
           onChangeText={(userName) => updateUserName(userName)}
-          onBlur={() => {if(!emailValidator(userName)) setUserNameError("invalied User Name")}}
+          onBlur={() => {if(!emailValidator(userName)) setUserNameError("invalid User Name")}}
         />
         <Input
           containerStyle={Styled.styles.containerStyle}
@@ -61,7 +66,7 @@ export default function LoginScreen({ navigation }) {
           inputContainerStyle={Styled.styles.inputContainerStyle}
           placeholderTextColor="#fccc54"
           onChangeText={(password) => updatePassword(password)}
-          onBlur={() => {if(!passwordValidator(password)) setPasswordError("invalied Password")}}
+          onBlur={() => {if(!passwordValidator(password)) setPasswordError("invalid Password")}}
         />
         <Styled.Buttons>
           <Button title="Log in" style={Styled.styles.loginButton} onPress={validateUser}/>

@@ -9,15 +9,12 @@ export default function LoginScreen(props) {
           width: props.style.width ? props.style.width : 100,
           height: props.style.height ? props.style.height : 35,
           alignSelf: "center",
-          borderColor: props.style.borderColor
-            ? props.style.borderColor
-            : "transparent",
+          borderColor: props.style.borderColor ? props.style.borderColor : "transparent",
           borderWidth: 2,
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: props.style.backgroundColor
-            ? props.style.backgroundColor
-            : "transparent",
+          backgroundColor: props.style.backgroundColor ? props.style.backgroundColor : "transparent",
+          borderRadius: props.style.borderRadius? props.style.borderRadius : 0,
         },
         title: {
           color: props.style.color ? props.style.color : "#000000",

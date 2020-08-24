@@ -20,20 +20,20 @@ export default function SignUpScreen({ navigation }) {
 
   const updateFirstName = (firstName) => {
     setFirstName(firstName);
-    if (firstNameError) (nameValidator(firstName))? setFirstNameError(""):setFirstNameError("invalied First Name");
+    if (firstNameError) (nameValidator(firstName))? setFirstNameError(""):setFirstNameError("invalid First Name");
   };
 
   const updateLastName = (lastName) => {
     setLastName(lastName);
-    if (lastNameError) (nameValidator(lastName))? setLastNameError(""):setLastNameError("invalied Last Name");
+    if (lastNameError) (nameValidator(lastName))? setLastNameError(""):setLastNameError("invalid Last Name");
   };
   const updateEmail = (email) => {
     setEmail(email);
-    if (emailError) (emailValidator(email))? setEmailError(""):setEmailError("invalied email");
+    if (emailError) (emailValidator(email))? setEmailError(""):setEmailError("invalid email");
   };
   const updatePassword = (password) => {
     setPassword(password);
-    if (passwordError) (passwordValidator(password))? setPasswordError(""):setPasswordError("invalied Password");
+    if (passwordError) (passwordValidator(password))? setPasswordError(""):setPasswordError("invalid Password");
   };
   const updateConfirmPassword = (password) => {
     setConfirmPassword(password);
@@ -73,7 +73,7 @@ export default function SignUpScreen({ navigation }) {
           value={firstName}
           errorMessage={firstNameError}
           onChangeText={(firstName) => updateFirstName(firstName)}
-          onBlur={() => {if(!nameValidator(firstName)) setFirstNameError("invalied First Name")}}
+          onBlur={() => {if(!nameValidator(firstName)) setFirstNameError("invalid First Name")}}
         />
         <Input
           containerStyle={Styled.styles.containerStyle}
@@ -83,7 +83,7 @@ export default function SignUpScreen({ navigation }) {
           value={lastName}
           errorMessage={lastNameError}
           onChangeText={(lastName) => updateLastName(lastName)}
-          onBlur={() => {if(!nameValidator(lastName)) setLastNameError("invalied Last Name")}}
+          onBlur={() => {if(!nameValidator(lastName)) setLastNameError("invalid Last Name")}}
         />
         <Input
           containerStyle={Styled.styles.containerStyle}
@@ -94,7 +94,7 @@ export default function SignUpScreen({ navigation }) {
           value={email}
           errorMessage={emailError}
           onChangeText={(email) => updateEmail(email)}
-          onBlur={() => {if(!emailValidator(email)) setEmailError("invalied email")}}
+          onBlur={() => {if(!emailValidator(email)) setEmailError("invalid email")}}
         />
         <Input
           containerStyle={Styled.styles.containerStyle}
@@ -105,7 +105,7 @@ export default function SignUpScreen({ navigation }) {
           value={password}
           errorMessage={passwordError}
           onChangeText={(password) => updatePassword(password)}
-          onBlur={() => {if(!passwordValidator(password)) setPasswordError("invalied Password")}}
+          onBlur={() => {if(!passwordValidator(password)) setPasswordError("invalid Password")}}
         />
         <Input
           containerStyle={Styled.styles.containerStyle}
